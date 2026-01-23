@@ -19,13 +19,13 @@ router.get("/posts", verifyJWT, postController.fetchPosts);
 
 // Update a post
 router.put(
-  "/posts/:id",
+  "/posts",
   validator(updatePostSchema),
   verifyJWT,
   postController.updatePost,
 );
 
 // Delete a post
-router.delete("/posts/:id", verifyJWT, postController.deletePost);
+router.delete("/posts", verifyJWT, postController.deletePost);
 
 export default router;
