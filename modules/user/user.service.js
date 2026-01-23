@@ -1,7 +1,6 @@
 import UserRepository from "./user.repository.js"
 import bcrypt from 'bcryptjs';
-import { UserNotFoundError, InvalidPasswordError, SamePasswordError } from "./user.error.js";
-import { EmailAlreadyExistsError } from "../auth/auth.error.js";
+import { UserNotFoundError, InvalidPasswordError, SamePasswordError, EmailAlreadyExistsError } from "../../shared/errors.js";
 
 
 export const fetchUserProfile = async (id) => {

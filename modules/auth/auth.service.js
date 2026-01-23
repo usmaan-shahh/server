@@ -1,7 +1,7 @@
 import UserRepository from "../user/user.repository.js";
 import bcrypt from 'bcryptjs';
 import generateTokens from "../../shared/generateTokens.js";
-import { CookieNotFoundError, EmailAlreadyExistsError, EmailNotFoundError, InvalidCredentialsError } from "./auth.error.js";
+import { CookieNotFoundError, EmailAlreadyExistsError, EmailNotFoundError, InvalidCredentialsError } from "../../shared/errors.js";
 
 
 export const registerUser = async ({ name, email, password }) => {
