@@ -1,15 +1,12 @@
 import prisma from "../../config/prisma.js";
 
 export default class PostRepository {
-
   static async fetchUserPosts(userId) {
-
     return prisma.post.findMany({
       where: {
-        authorId: userId
-      }
+        authorId: userId,
+      },
     });
-
   }
 
   static async findById(id) {
@@ -26,17 +23,15 @@ export default class PostRepository {
   }
 
   static async createUserPost(data) {
-
     return prisma.post.create({
-      data
+      data,
     });
-
   }
 
   static async updateUserPost(id, data) {
     return prisma.post.update({
       where: { id: Number(id) },
-      data
+      data,
     });
   }
 
@@ -46,5 +41,3 @@ export default class PostRepository {
     });
   }
 }
-
-

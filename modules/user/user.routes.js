@@ -1,6 +1,6 @@
-import verifyJWT from "../../middlewares/verifyJWT.js"
-import express from "express"
-import * as userController from "./user.controller.js"
+import verifyJWT from "../../middlewares/verifyJWT.js";
+import express from "express";
+import * as userController from "./user.controller.js";
 
 const router = express.Router();
 
@@ -14,6 +14,10 @@ router.put("/profile", verifyJWT, userController.updateProfile);
 router.delete("/profile", verifyJWT, userController.deleteAccount);
 
 // Change password
-router.post("/profile/change-password", verifyJWT, userController.changePassword);
+router.post(
+  "/profile/change-password",
+  verifyJWT,
+  userController.changePassword,
+);
 
 export default router;

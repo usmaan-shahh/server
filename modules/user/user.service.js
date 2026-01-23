@@ -1,23 +1,23 @@
-import UserRepository from "./user.repository.js"
-import bcrypt from 'bcryptjs';
-import { UserNotFoundError, InvalidPasswordError, SamePasswordError, EmailAlreadyExistsError } from "../../shared/errors.js";
-
+import UserRepository from "./user.repository.js";
+import bcrypt from "bcryptjs";
+import {
+  UserNotFoundError,
+  InvalidPasswordError,
+  SamePasswordError,
+  EmailAlreadyExistsError,
+} from "../../shared/errors.js";
 
 export const fetchUserProfile = async (id) => {
   return UserRepository.findById(id);
-}
+};
 
 export const updateUserProfile = async (id, email) => {
-
   if (email) {
-
     const existingUser = await UserRepository.findByEmail(email);
-
 
     if (existingUser && existingUser._id.toString() !== id) {
       throw new EmailAlreadyExistsError();
     }
-
   }
 
   const updatedUser = await UserRepository.updateById(id, { email });
@@ -25,10 +25,9 @@ export const updateUserProfile = async (id, email) => {
   if (!updatedUser) throw new UserNotFoundError();
 
   return updatedUser;
-}
+};
 
 export const deleteUserAccount = async (id) => {
-
   const deletedUser = await UserRepository.deleteById(id);
 
   if (!deletedUser) {
@@ -36,10 +35,9 @@ export const deleteUserAccount = async (id) => {
   }
 
   return deletedUser;
-}
+};
 
 export const updatePassword = async (id, currentPassword, newPassword) => {
-
   const user = await UserRepository.findById(id);
 
   if (!user) {
@@ -48,13 +46,19 @@ export const updatePassword = async (id, currentPassword, newPassword) => {
 
   const userWithPassword = await UserRepository.findByEmail(user.email);
 
-  const isPasswordValid = await bcrypt.compare(currentPassword, userWithPassword.password);
+  const isPasswordValid = await bcrypt.compare(
+    currentPassword,
+    userWithPassword.password,
+  );
 
   if (!isPasswordValid) {
     throw new InvalidPasswordError();
   }
 
-  const isSamePassword = await bcrypt.compare(newPassword, userWithPassword.password);
+  const isSamePassword = await bcrypt.compare(
+    newPassword,
+    userWithPassword.password,
+  );
 
   if (isSamePassword) {
     throw new SamePasswordError();
@@ -62,8 +66,9 @@ export const updatePassword = async (id, currentPassword, newPassword) => {
 
   const hashedPassword = await bcrypt.hash(newPassword, 10);
 
-  const updatedUser = await UserRepository.updateById(id, { password: hashedPassword });
+  const updatedUser = await UserRepository.updateById(id, {
+    password: hashedPassword,
+  });
 
   return updatedUser;
-}
-
+};

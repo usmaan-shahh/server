@@ -1,7 +1,6 @@
 import prisma from "../../config/prisma.js";
 
 export default class UserRepository {
-
   static async findById(id) {
     return prisma.user.findUnique({
       where: { id: Number(id) },
@@ -49,11 +48,9 @@ export default class UserRepository {
     });
   }
 
-
   static async deleteById(id) {
     return prisma.user.delete({
       where: { id: Number(id) },
     });
   }
-
 }

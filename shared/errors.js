@@ -1,4 +1,4 @@
-                /*------AUTH ERRORS------*/
+/*------AUTH ERRORS------*/
 
 export class EmailAlreadyExistsError extends Error {
   constructor() {
@@ -32,8 +32,8 @@ export class CookieNotFoundError extends Error {
   }
 }
 
-              /*------USER ERRORS------*/
-              
+/*------USER ERRORS------*/
+
 export class UserNotFoundError extends Error {
   constructor() {
     super("User not found.");
@@ -58,8 +58,7 @@ export class SamePasswordError extends Error {
   }
 }
 
-      
-              /*------POST ERRORS------*/
+/*------POST ERRORS------*/
 
 export class PostNotFoundError extends Error {
   constructor() {

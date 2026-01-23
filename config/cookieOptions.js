@@ -2,10 +2,8 @@
 // secure: true enforces cookies to be sent only over HTTPS (for security in production).
 
 export const cookieOptions = {
-
   httpOnly: true,
   secure: false,
   sameSite: "lax",
   maxAge: 60 * 60 * 1000,
-
 };
