@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+
   "scripts": {
-    "server": "nodemon server/server.js"
+    "server": "nodemon server/server.js",
+    "secretkey": "node config/generateSecret.js"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
