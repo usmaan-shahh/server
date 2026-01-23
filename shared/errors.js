@@ -1,3 +1,5 @@
+                /*------AUTH ERRORS------*/
+
 export class EmailAlreadyExistsError extends Error {
   constructor() {
     super("Email already exists. Try with a different email.");
@@ -30,7 +32,8 @@ export class CookieNotFoundError extends Error {
   }
 }
 
-// User Errors
+              /*------USER ERRORS------*/
+              
 export class UserNotFoundError extends Error {
   constructor() {
     super("User not found.");
@@ -52,5 +55,24 @@ export class SamePasswordError extends Error {
     super("New password cannot be the same as the current password.");
     this.name = "SamePasswordError";
     this.statusCode = 400;
+  }
+}
+
+      
+              /*------POST ERRORS------*/
+
+export class PostNotFoundError extends Error {
+  constructor() {
+    super("Post not found.");
+    this.name = "PostNotFoundError";
+    this.statusCode = 404;
+  }
+}
+
+export class UnauthorizedPostAccessError extends Error {
+  constructor() {
+    super("You do not have permission to access this post.");
+    this.name = "UnauthorizedPostAccessError";
+    this.statusCode = 403;
   }
 }

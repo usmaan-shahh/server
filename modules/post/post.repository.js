@@ -12,6 +12,19 @@ export default class PostRepository {
 
   }
 
+  static async findById(id) {
+    return prisma.post.findUnique({
+      where: { id: Number(id) },
+      select: {
+        id: true,
+        title: true,
+        content: true,
+        authorId: true,
+        createdAt: true,
+      },
+    });
+  }
+
   static async createUserPost(data) {
 
     return prisma.post.create({

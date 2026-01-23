@@ -23,11 +23,11 @@ export const createPost = async (request, response, next) => {
 
     try {
   
-      const userId = req.authenticated.userId;
+      const userId = request.authenticated.userId;
   
       const { title, content } = request.body
   
-      const post = await PostService.createUserPost({ title, content, authorId: userId });
+      const post = await PostService.createUserPost(userId, { title, content });
   
       return response.status(201).json({
         message: "Post created successfully",
@@ -41,6 +41,44 @@ export const createPost = async (request, response, next) => {
     }
 };
 
-export const deletePost = async (request, response, next) => {}
+export const deletePost = async (request, response, next) => {
+  
+  try {
+  
+    const userId = request.authenticated.userId;
+    const postId = request.params.id;
+  
+    await PostService.deleteUserPost(postId, userId);
+  
+    return response.status(200).json({
+      message: "Post deleted successfully"
+    });
+  
+  } catch (error) {
+  
+    next(error);
+  
+  }
+}
 
-export const updatePost = async (request, response, next) => {}
+export const updatePost = async (request, response, next) => {
+  
+  try {
+  
+    const userId = request.authenticated.userId;
+    const postId = request.params.id;
+    const { title, content } = request.body;
+  
+    const post = await PostService.updateUserPost(postId, userId, { title, content });
+  
+    return response.status(200).json({
+      message: "Post updated successfully",
+      post
+    });
+  
+  } catch (error) {
+  
+    next(error);
+  
+  }
+}

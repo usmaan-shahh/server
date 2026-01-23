@@ -14,9 +14,9 @@ router.post("/posts", validator(createPostSchema), verifyJWT, postController.cre
 router.get("/posts", verifyJWT, postController.fetchPosts);
 
 // Update a post
-router.put("/posts", validator(updatePostSchema), verifyJWT, postController.updatePost);
+router.put("/posts/:id", validator(updatePostSchema), verifyJWT, postController.updatePost);
 
 // Delete a post
-router.delete("/posts", verifyJWT, postController.deletePost);
+router.delete("/posts/:id", verifyJWT, postController.deletePost);
 
 export default router;
